@@ -1,0 +1,11 @@
+## Usage
+To run the simulation, use the following commands:
+
+```bash
+make
+./exp.x
+```
+
+an Operating System with a bash shell and g++ and make installed is required.
+
+In the `main.cc`, edit the `main` function to change between min-flow and avg-flow, edit the budget randomization (or insert the budgets and connections manually), edit the number of agents, or print different results to screen.
