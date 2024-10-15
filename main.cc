@@ -32,10 +32,6 @@ Graph br_dynamics_maxflow(const Graph& G)
         if (turn % G.n == 0) std::shuffle(turn_vect.begin(), turn_vect.end(), g);
         int player = turn_vect[turn % G.n];
 
-        //if (turn % G.n == 0) fmt::print("------\n");
-        //fmt::print("{}\n", player);    
-
-
         // Best Response
         bool res = current.best_response(player);
 
@@ -118,32 +114,21 @@ Graph br_dynamics_avgflow(const Graph& G)
 
 int main()
 {
+    // Number of agents
     Graph G(9);
 
+    // How to initialize the budgets
     G.init_rand_budgets_binary(1, 5);
-    G.init_manually_budgets();
+    //G.init_manually_budgets();
+    //G.init_rand_budgets(2, 6);
+
+    // How to initialize the network
     G.initialize_randomly();
-
-/*
-    G.budget_array = {2, 2, 2, 2, 2, 2};
-    
-    G.dir_mx = {{0, 2, 0, 0, 0, 0},
-                {1, 0, 0, 1, 0, 0},
-                {0, 2, 0, 0, 0, 0},
-                {0, 0, 0, 0, 2, 0},
-                {0, 0, 1, 1, 0, 0},
-                {0, 0, 0, 0, 2, 0}};
-
-    for (int i = 0; i < G.n; ++i)
-    for (int j = 0; j < i; ++j)
-    {
-        G.und_mx[i][j] = G.dir_mx[i][j] + G.dir_mx[j][i];
-        G.und_mx[j][i] = G.und_mx[i][j];
-    }
-  */  
+    //G.initialize_manually();
 
     G.verbose();
 
+    // Render initial graph, directed and undirected
     G.render_graph("init-dir", false);
     G.render_graph("init", true);
 

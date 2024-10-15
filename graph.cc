@@ -19,7 +19,6 @@ Graph::Graph(int vertices){
     dir_mx.resize(n, std::vector<int>(n, 0));
     und_mx.resize(n, std::vector<int>(n, 0));
     budget_array.resize(n, 0);
-    dirty = true;
 }
 
 Graph::~Graph() {
@@ -140,58 +139,7 @@ void Graph::render_graph(std::string filename, bool is_undir){
 }
 
 int Graph::min_cut() {
-    /*
-    std::vector<std::vector<int>> und_mx_aux(n, std::vector<int>(n, 0));
 
-    int N = n;
-
-    for (int i = 0; i < n; ++i)
-    for (int j = 0; j < n; ++j) und_mx_aux[i][j] = und_mx[i][j];
-
-    std::vector<int> vertices(n);
-    for (int i = 0; i < n; ++i) {
-        vertices[i] = i;
-    }
-
-    int minCut = INT_MAX;
-
-    while (N > 1) {
-        std::vector<int> w(N , 0);
-        std::vector<bool> inA(N, false);
-
-        int prev = 0;
-        for (int i = 0; i < N; ++i) {
-            int maxW = -1, sel = -1;
-            for (int j = 0; j < N; ++j) {
-                if (!inA[j] && w[j] > maxW) {
-                    maxW = w[j];
-                    sel = j;
-                }
-            }
-
-            if (i == N - 1) {
-                if (maxW < minCut) {
-                    minCut = maxW;
-                }
-                for (int j = 0; j < N; ++j) {
-                    und_mx_aux[vertices[prev]][vertices[j]] += und_mx_aux[vertices[j]][vertices[sel]];
-                    und_mx_aux[vertices[j]][vertices[prev]] = und_mx_aux[vertices[prev]][vertices[j]];
-                }
-                vertices.erase(vertices.begin() + sel);
-                --N;
-            } else {
-                inA[sel] = true;
-                prev = sel;
-                for (int j = 0; j < N; ++j) {
-                    if (!inA[j]) {
-                        w[j] += und_mx_aux[vertices[sel]][vertices[j]];
-                    }
-                }
-            }
-        }
-    }
-
-    return minCut;*/
     std::vector<std::vector<int>> mc_matrix(n, std::vector<int>(n, 0));
     
     int current_mc = INT_MAX;

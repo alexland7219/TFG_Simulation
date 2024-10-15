@@ -48,9 +48,6 @@ public:
 
     std::vector<int> budget_array;
 
-    // Is the latest computed mincut and avgflow dirty?
-    bool dirty;
-
     int latest_computed_mincut;
     float latest_computed_avgflow;
     int latest_robustness_chk;
